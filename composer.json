@@ -1,0 +1,26 @@
+{
+    "name": "higaki-takanori/phigaki-tar",
+    "type": "project",
+    "require-dev": {
+        "phpstan/phpstan": "^2.2",
+        "pestphp/pest": "^4.7",
+        "symplify/easy-coding-standard": "^13.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phigaki\\Tar\\": "src/"
+        }
+    },
+    "require": {},
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "ecs": "ecs check",
+        "ecsfix": "ecs check --fix",
+        "phpstan": "phpstan analyse",
+        "test": "pest"
+    }
+}
