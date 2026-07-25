@@ -15,6 +15,7 @@ final readonly class Header
         public Gid $gid,
         public FileSize $fileSize,
         public ModificationTime $mtime,
+        public Link $link,
         public FilePad $pad,
     ) {
     }
@@ -38,6 +39,8 @@ final readonly class Header
         $gid = Gid::create($meta["gid"]);
         $fileSize = FileSize::create($meta["size"]);
         $mtime = ModificationTime::from($meta["mtime"]);
+        $type = FileType::fromPath($filePath);
+        $link = Link::create($type, "");  // TODO: readlink(...) でリンク先のファイル名を取得する。
         $pad = FilePad::create();
 
         return new self(
@@ -47,6 +50,7 @@ final readonly class Header
             gid: $gid,
             fileSize: $fileSize,
             mtime: $mtime,
+            link: $link,
             pad: $pad,
         );
     }
@@ -59,6 +63,7 @@ final readonly class Header
             $this->gid->bytes() .
             $this->fileSize->bytes() .
             $this->mtime->bytes() .
+            $this->link->bytes() .
             $this->pad->bytes();
     }
 }
