@@ -48,8 +48,8 @@ describe('FilePermission', function () {
             // 0b1000000110100100 = 33188
             $permission = FilePermission::from(33188);
 
-            // 0x30|30|30|36|34|34|20|00 = "0|0|0|6|4|4|space|NULL"
-            expect($permission->bytes())->toEqual(hex2bin('3030303634342000'));
+            // 0x30|30|30|30|36|34|34|00 = "0|0|0|0|6|4|4|NULL"
+            expect($permission->bytes())->toEqual(hex2bin('3030303036343400'));
         });
     });
 });

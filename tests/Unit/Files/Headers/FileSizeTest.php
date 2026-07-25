@@ -30,8 +30,8 @@ describe('FileSize', function () {
         it('8進数に変換後binary文字列で出力される', function () {
             $FileSize = FileSize::create(1000);
 
-            // 0|0|0|0|0|0|0|1|0|0|0|space = 0x30|30|30|30|30|30|30|31|37|35|30|20 = "0o0|0|0|0|0|0|0|1|7|5|0|space"
-            expect($FileSize->bytes())->toEqual(hex2bin('303030303030303137353020'));
+            // 0|0|0|0|0|0|0|1|0|0|0|NULL = 0x30|30|30|30|30|30|30|31|37|35|30|00 = "0o0|0|0|0|0|0|0|1|7|5|0|NULL"
+            expect($FileSize->bytes())->toEqual(hex2bin('303030303030303137353000'));
         });
     });
 });
