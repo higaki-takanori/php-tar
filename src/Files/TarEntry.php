@@ -9,7 +9,7 @@ use Phigaki\Tar\Files\Headers\Header;
 final readonly class TarEntry
 {
     private function __construct(
-        public Header       $header,
+        public Header $header,
         public ?FileContent $content,
     ) {
     }
