@@ -15,6 +15,7 @@ final readonly class Header
         public Gid $gid,
         public FileSize $fileSize,
         public ModificationTime $mtime,
+        public FilePad $pad,
     ) {
     }
 
@@ -37,6 +38,7 @@ final readonly class Header
         $gid = Gid::create($meta["gid"]);
         $fileSize = FileSize::create($meta["size"]);
         $mtime = ModificationTime::from($meta["mtime"]);
+        $pad = FilePad::create();
 
         return new self(
             fileName: $fileName,
@@ -45,6 +47,7 @@ final readonly class Header
             gid: $gid,
             fileSize: $fileSize,
             mtime: $mtime,
+            pad: $pad,
         );
     }
 
@@ -55,6 +58,7 @@ final readonly class Header
             $this->uid->bytes() .
             $this->gid->bytes() .
             $this->fileSize->bytes() .
-            $this->mtime->bytes();
+            $this->mtime->bytes() .
+            $this->pad->bytes();
     }
 }
