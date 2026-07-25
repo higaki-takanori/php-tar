@@ -15,6 +15,7 @@ final readonly class Header
         public Gid $gid,
         public FileSize $fileSize,
         public ModificationTime $mtime,
+        public CheckSum $checkSum,
         public Link $link,
         public FilePad $pad,
     ) {
@@ -43,6 +44,17 @@ final readonly class Header
         $link = Link::create($type, "");  // TODO: readlink(...) でリンク先のファイル名を取得する。
         $pad = FilePad::create();
 
+        $checkSum = CheckSum::from(
+            fileName: $fileName,
+            filePermission: $filePermission,
+            uid: $uid,
+            gid: $gid,
+            fileSize: $fileSize,
+            mtime: $mtime,
+            link: $link,
+            pad: $pad,
+        );
+
         return new self(
             fileName: $fileName,
             filePermission: $filePermission,
@@ -50,6 +62,7 @@ final readonly class Header
             gid: $gid,
             fileSize: $fileSize,
             mtime: $mtime,
+            checkSum: $checkSum,
             link: $link,
             pad: $pad,
         );
@@ -63,6 +76,7 @@ final readonly class Header
             $this->gid->bytes() .
             $this->fileSize->bytes() .
             $this->mtime->bytes() .
+            $this->checkSum->bytes() .
             $this->link->bytes() .
             $this->pad->bytes();
     }
