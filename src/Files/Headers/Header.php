@@ -10,6 +10,7 @@ final readonly class Header
 {
     private function __construct(
         public FileName $fileName,
+        public FilePermission $filePermission,
     ) {
     }
 
@@ -27,14 +28,17 @@ final readonly class Header
         }
 
         $fileName = FileName::create($filePath);
+        $filePermission = FilePermission::from($meta["mode"]);
 
         return new self(
             fileName: $fileName,
+            filePermission: $filePermission,
         );
     }
 
     public function bytes(): string
     {
-        return $this->fileName->bytes();
+        return $this->fileName->bytes() .
+            $this->filePermission->bytes();
     }
 }
