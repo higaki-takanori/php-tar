@@ -39,7 +39,8 @@ final readonly class Link
     public function bytes(): string
     {
         return match ($this->fileType) {
-            FileType::RegularFile => PadResolver::padNull('', self::BYTE_LENGTH, PadOrder::RIGHT),
+            FileType::RegularFile,
+            FileType::Directory => PadResolver::padNull($this->fileType->bytes(), self::BYTE_LENGTH, PadOrder::RIGHT),
             default => throw new Exception('未実装です。'),
         };
     }

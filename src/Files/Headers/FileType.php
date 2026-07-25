@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Phigaki\Tar\Files\Headers;
 
 use Exception;
+use Phigaki\Tar\Fundamentals\PadOrder;
+use Phigaki\Tar\Fundamentals\PadResolver;
 
 /**
  * @see https://pubs.opengroup.org/onlinepubs/9799919799/utilities/pax.html#tagtcjh_21
@@ -32,6 +34,8 @@ enum FileType: int
     case Reserved = 7;
     case Other = -1;
 
+    public const int BYTE_LENGTH = 1;
+
     public static function fromPath(string $path): self
     {
         // @see https://www.php.net/manual/ja/function.filetype.php
@@ -55,5 +59,10 @@ enum FileType: int
     public function toString(): string
     {
         return decbin($this->value);
+    }
+
+    public function bytes(): string
+    {
+        return PadResolver::padNull((string)$this->value, self::BYTE_LENGTH, PadOrder::RIGHT);
     }
 }
