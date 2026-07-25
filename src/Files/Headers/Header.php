@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Phigaki\Tar\Files\Headers;
 
 use Exception;
+use Phigaki\Tar\Files\TarRecord;
 
-final readonly class Header
+final readonly class Header implements TarRecord
 {
     private function __construct(
         public FileName $fileName,

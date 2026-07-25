@@ -6,7 +6,7 @@ namespace Phigaki\Tar\Files;
 
 use Phigaki\Tar\Fundamentals\PadResolver;
 
-final readonly class FileContent
+final readonly class FileContent implements TarRecord
 {
     public const int BYTE_LENGTH = 512;
 
