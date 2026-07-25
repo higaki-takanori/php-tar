@@ -36,13 +36,13 @@ final readonly class Header implements TarRecord
         }
 
         $fileName = FileName::create($filePath);
-        $filePermission = FilePermission::from($meta["mode"]);
-        $uid = Uid::create($meta["uid"]);
-        $gid = Gid::create($meta["gid"]);
-        $fileSize = FileSize::create($meta["size"]);
-        $mtime = ModificationTime::from($meta["mtime"]);
+        $filePermission = FilePermission::from($meta['mode']);
+        $uid = Uid::create($meta['uid']);
+        $gid = Gid::create($meta['gid']);
+        $fileSize = FileSize::create($meta['size']);
+        $mtime = ModificationTime::from($meta['mtime']);
         $type = FileType::fromPath($filePath);
-        $link = Link::create($type, "");  // TODO: readlink(...) でリンク先のファイル名を取得する。
+        $link = Link::create($type, '');  // TODO: readlink(...) でリンク先のファイル名を取得する。
         $pad = FilePad::create();
 
         $checkSum = CheckSum::from(
