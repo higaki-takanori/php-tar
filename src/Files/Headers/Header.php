@@ -6,11 +6,11 @@ namespace Phigaki\Tar\Files\Headers;
 
 use Exception;
 
-readonly final class Header
+final readonly class Header
 {
     private function __construct(
-    )
-    {
+        public FileName $fileName,
+    ) {
     }
 
     /**
@@ -26,11 +26,15 @@ readonly final class Header
             throw new Exception("ファイルのメタ情報の読み込みに失敗しました。{$filePath}を確認してください。");
         }
 
-        return new self();
+        $fileName = FileName::create($filePath);
+
+        return new self(
+            fileName: $fileName,
+        );
     }
 
     public function bytes(): string
     {
-        return '';
+        return $this->fileName->bytes();
     }
 }
