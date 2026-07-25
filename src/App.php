@@ -2,16 +2,17 @@
 
 namespace Phigaki\Tar;
 
+use Phigaki\Tar\Files\Headers\Header;
+
 final readonly class App
 {
     public static function main(): void
     {
-        $file = './files/sample.txt';
+        $filePath = './files/sample.txt';
 
-        $uid = fileowner($file);
-        $gid = filegroup($file);
+        $header = Header::create($filePath);
 
-        var_dump("UID: {$uid}");
-        var_dump("GID: {$gid}");
+        var_dump($header);
+        var_dump($header->bytes());
     }
 }
