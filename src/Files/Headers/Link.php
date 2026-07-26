@@ -15,8 +15,8 @@ final readonly class Link
     public const int BYTE_LENGTH = 101;
 
     private function __construct(
-        private FileType $fileType,
-        private ?string $linkName,
+        public FileType $fileType,
+        public ?string $linkName,
     ) {
     }
 
@@ -25,6 +25,10 @@ final readonly class Link
         return match ($fileType) {
             FileType::RegularFile => new self(
                 fileType: FileType::RegularFile,
+                linkName: null,
+            ),
+            FileType::Directory => new self(
+                fileType: FileType::Directory,
                 linkName: null,
             ),
             default => throw new Exception('未実装です。'),
