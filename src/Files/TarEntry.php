@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Phigaki\Tar\Files;
 
+use Phigaki\Tar\Files\Headers\FileType;
 use Phigaki\Tar\Files\Headers\Header;
 
 final readonly class TarEntry
@@ -16,9 +17,15 @@ final readonly class TarEntry
 
     public static function from(string $path): self
     {
+        $header = Header::create($path);
+
+        $content = match ($header->getFileType()) {
+            FileType::RegularFile => FileContent::from($path),
+            default => null,
+        };
         return new self(
-            header: Header::create($path),
-            content: FileContent::from($path),
+            header: $header,
+            content: $content,
         );
     }
 
