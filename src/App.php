@@ -10,8 +10,9 @@ final readonly class App
     {
         $filePath1 = './files/sample.txt';
         $filePath2 = './files/sample2.txt';
+        $filePath3 = './files/directory/';
 
-        $tar = Tar::from([$filePath1, $filePath2]);
-        $tar->save('sample.tar');
+        $tar = Tar::from([$filePath1, $filePath2, $filePath3]);
+        $tar->save('sample.php.tar');
     }
 }

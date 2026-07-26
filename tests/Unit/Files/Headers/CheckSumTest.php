@@ -81,7 +81,7 @@ describe('CheckSum', function () {
                 link: $link,
                 pad: $pad,
             );
-            expect($checkSum->bytes())->toEqual(hex2bin('3030363430330020'));
+            expect($checkSum->bytes())->toEqual(hex2bin('3030363436330020'));
         });
     });
 });

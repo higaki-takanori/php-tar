@@ -69,6 +69,11 @@ final readonly class Header implements TarRecord
         );
     }
 
+    public function getFileType(): FileType
+    {
+        return $this->link->fileType;
+    }
+
     public function bytes(): string
     {
         return $this->fileName->bytes() .
