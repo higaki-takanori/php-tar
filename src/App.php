@@ -13,11 +13,13 @@ final readonly class App
     {
         $filePaths = match ($argc) {
             0 => throw new UnexpectedValueException('想定し得ない値が入力されました。'),
-            1 => throw new Exception('tarball にするファイルを指定してください。'),
-            default => array_slice($argv, 1),
+            1 => throw new Exception('保存する tarball のファイル名を指定してください。'),
+            2 => throw new Exception('tarball に格納するファイルを指定してください。'),
+            default => array_slice($argv, 2),
         };
+        $outputName = $argv[1];
 
         $tar = Tar::from($filePaths);
-        $tar->save('sample.php.tar');
+        $tar->save($outputName);
     }
 }
