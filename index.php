@@ -6,4 +6,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Phigaki\Tar\App;
 
-App::main();
+/**
+ * @var int $argc
+ * @var string[] $argv
+ */
+App::main(argc: $argc, argv: $argv);
