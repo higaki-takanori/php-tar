@@ -8,7 +8,7 @@ use Phigaki\Tar\Fundamentals\PadResolver;
 
 final readonly class FileContent implements TarRecord
 {
-    public const int BYTE_LENGTH = 512;
+    public const int BYTE_LENGTH_UNIT = 512;
 
     private function __construct(
         public string $content,
@@ -31,6 +31,8 @@ final readonly class FileContent implements TarRecord
 
     public function bytes(): string
     {
-        return PadResolver::padNull($this->content, self::BYTE_LENGTH);
+        // 512byteの区切りの長さに揃える
+        $byteLength = (int)ceil(strlen($this->content) / self::BYTE_LENGTH_UNIT) * self::BYTE_LENGTH_UNIT;
+        return PadResolver::padNull($this->content, $byteLength);
     }
 }
