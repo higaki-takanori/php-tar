@@ -16,7 +16,7 @@ final readonly class DirectoryPathResolver
     {
         $result = [];
         if (is_dir($path)) {
-            $directory = new RecursiveDirectoryIterator($path);
+            $directory = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
             $iterator = new RecursiveIteratorIterator($directory);
 
             foreach ($iterator as $file) {
